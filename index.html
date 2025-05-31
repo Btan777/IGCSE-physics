@@ -424,8 +424,6 @@
             <button class="nav-btn" onclick="showSection('lightning')">Lightning</button>
             <button class="nav-btn" onclick="showSection('applications')">Applications</button>
             <button class="nav-btn" onclick="showSection('quiz')">Quiz Time</button>
-         <button class="nav-btn" onclick="showSection('ohm')">Ohm's Law</button>
-
         </div>
 
         <div class="progress-bar">
@@ -506,7 +504,7 @@
             </div>
         </div>
 
-<!-- Forces Section -->
+       <!-- Forces Section -->
 <div class="section" id="forces">
   <h2>🧲 Forces Between Charges</h2>
 
@@ -540,8 +538,6 @@
     </a></p>
   </div>
 </div>
-
-        
 
         <!-- Lightning Section -->
         <div class="section" id="lightning">
@@ -631,55 +627,6 @@
         </div>
     </div>
 
-<!-- Ohm's Law Section -->
-<div class="section" id="ohm">
-  <h2>🔌 Ohm’s Law</h2>
-  <p><strong>Ohm’s Law</strong> explains how voltage (V), current (I), and resistance (R) are related in an electrical circuit.</p>
-
-  <div style="background-color:#fff; color:#000; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-    <strong>Formula:</strong><br>
-    <span style="font-size: 1.2em;">V = I × R</span>
-    <ul>
-      <li><strong>V</strong> = Voltage (Volts)</li>
-      <li><strong>I</strong> = Current (Amps)</li>
-      <li><strong>R</strong> = Resistance (Ohms)</li>
-    </ul>
-  </div>
-
-  <h4>🧪 Interactive Calculator</h4>
-  <p>Enter any two values to calculate the third:</p>
-
-  <label for="voltage">Voltage (V): </label>
-  <input type="number" id="voltage" step="any"><br><br>
-
-  <label for="current">Current (I): </label>
-  <input type="number" id="current" step="any"><br><br>
-
-  <label for="resistance">Resistance (R): </label>
-  <input type="number" id="resistance" step="any"><br><br>
-
-  <button onclick="calculateOhmsLaw()">Calculate</button>
-  <p id="ohmResult" style="font-weight: bold;">Result: ?</p>
-
-  <div class="interactive-element" style="margin-top: 20px;">
-    <h4>🔗 Explore More</h4>
-    <p>
-      <a href="https://phet.colorado.edu/en/simulation/ohms-law" target="_blank">
-        ➤ Launch PhET Simulation: Ohm’s Law
-      </a>
-    </p>
-  </div>
-</div>
-
-
-  <h4>🔗 Extra Practice</h4>
-  <p><a href="https://phet.colorado.edu/en/simulation/ohms-law" target="_blank">
-    ➤ Launch PhET Simulation: Ohm’s Law
-  </a></p>
-</div>
-
-
-    
     <script>
         let currentQuestion = 0;
         let score = 0;
@@ -988,30 +935,6 @@
                 document.querySelector(`[onclick="showSection('${sections[currentSectionIndex - 1]}')"]`).click();
             }
         }
-
-<script>
-  function calculateOhmsLaw() {
-    const V = parseFloat(document.getElementById("voltage").value);
-    const I = parseFloat(document.getElementById("current").value);
-    const R = parseFloat(document.getElementById("resistance").value);
-    let result = "";
-
-    if (!isNaN(V) && !isNaN(I)) {
-      result = `Resistance R = ${(V / I).toFixed(2)} Ω`;
-    } else if (!isNaN(V) && !isNaN(R)) {
-      result = `Current I = ${(V / R).toFixed(2)} A`;
-    } else if (!isNaN(I) && !isNaN(R)) {
-      result = `Voltage V = ${(I * R).toFixed(2)} V`;
-    } else {
-      result = "Please enter any two values.";
-    }
-
-    document.getElementById("ohmResult").textContent = "Result: " + result;
-  }
-</script>
-
-
-        
     </script>
 </body>
 </html>
