@@ -424,7 +424,8 @@
             <button class="nav-btn" onclick="showSection('lightning')">Lightning</button>
             <button class="nav-btn" onclick="showSection('applications')">Applications</button>
             <button class="nav-btn" onclick="showSection('quiz')">Quiz Time</button>
-            <button class="nav-btn" onclick="showSection('ohm')">Ohm's Law</button>
+         <button class="nav-btn" onclick="showSection('ohm')">Ohm's Law</button>
+
         </div>
 
         <div class="progress-bar">
@@ -633,27 +634,43 @@
 <!-- Ohm's Law Section -->
 <div class="section" id="ohm">
   <h2>🔌 Ohm’s Law</h2>
-  <p><strong>Ohm’s Law</strong> describes the relationship between voltage, current, and resistance:</p>
+  <p><strong>Ohm’s Law</strong> explains how voltage (V), current (I), and resistance (R) are related in an electrical circuit.</p>
 
-  <div style="background:#eef; color:#000; padding: 12px; border-left: 5px solid #0072ff; margin-bottom: 10px;">
-    <strong>Formula:</strong><br><br>
-    <span style="font-size: 1.2em;">V = I × R</span><br>
+  <div style="background-color:#fff; color:#000; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+    <strong>Formula:</strong><br>
+    <span style="font-size: 1.2em;">V = I × R</span>
     <ul>
-      <li><strong>V</strong> is the voltage (Volts)</li>
-      <li><strong>I</strong> is the current (Amperes)</li>
-      <li><strong>R</strong> is the resistance (Ohms)</li>
+      <li><strong>V</strong> = Voltage (Volts)</li>
+      <li><strong>I</strong> = Current (Amps)</li>
+      <li><strong>R</strong> = Resistance (Ohms)</li>
     </ul>
   </div>
 
   <h4>🧪 Interactive Calculator</h4>
   <p>Enter any two values to calculate the third:</p>
 
-  <label>Voltage (V): <input type="number" id="voltage" step="any" /></label><br>
-  <label>Current (I): <input type="number" id="current" step="any" /></label><br>
-  <label>Resistance (R): <input type="number" id="resistance" step="any" /></label><br><br>
-  
+  <label for="voltage">Voltage (V): </label>
+  <input type="number" id="voltage" step="any"><br><br>
+
+  <label for="current">Current (I): </label>
+  <input type="number" id="current" step="any"><br><br>
+
+  <label for="resistance">Resistance (R): </label>
+  <input type="number" id="resistance" step="any"><br><br>
+
   <button onclick="calculateOhmsLaw()">Calculate</button>
-  <p id="ohmResult">Result: ?</p>
+  <p id="ohmResult" style="font-weight: bold;">Result: ?</p>
+
+  <div class="interactive-element" style="margin-top: 20px;">
+    <h4>🔗 Explore More</h4>
+    <p>
+      <a href="https://phet.colorado.edu/en/simulation/ohms-law" target="_blank">
+        ➤ Launch PhET Simulation: Ohm’s Law
+      </a>
+    </p>
+  </div>
+</div>
+
 
   <h4>🔗 Extra Practice</h4>
   <p><a href="https://phet.colorado.edu/en/simulation/ohms-law" target="_blank">
@@ -972,24 +989,27 @@
             }
         }
 
-function calculateOhmsLaw() {
-  const V = parseFloat(document.getElementById("voltage").value);
-  const I = parseFloat(document.getElementById("current").value);
-  const R = parseFloat(document.getElementById("resistance").value);
-  let result = "";
+<script>
+  function calculateOhmsLaw() {
+    const V = parseFloat(document.getElementById("voltage").value);
+    const I = parseFloat(document.getElementById("current").value);
+    const R = parseFloat(document.getElementById("resistance").value);
+    let result = "";
 
-  if (!isNaN(V) && !isNaN(I)) {
-    result = `Resistance R = ${(V / I).toFixed(2)} Ω`;
-  } else if (!isNaN(V) && !isNaN(R)) {
-    result = `Current I = ${(V / R).toFixed(2)} A`;
-  } else if (!isNaN(I) && !isNaN(R)) {
-    result = `Voltage V = ${(I * R).toFixed(2)} V`;
-  } else {
-    result = "Please enter any two values.";
+    if (!isNaN(V) && !isNaN(I)) {
+      result = `Resistance R = ${(V / I).toFixed(2)} Ω`;
+    } else if (!isNaN(V) && !isNaN(R)) {
+      result = `Current I = ${(V / R).toFixed(2)} A`;
+    } else if (!isNaN(I) && !isNaN(R)) {
+      result = `Voltage V = ${(I * R).toFixed(2)} V`;
+    } else {
+      result = "Please enter any two values.";
+    }
+
+    document.getElementById("ohmResult").textContent = "Result: " + result;
   }
+</script>
 
-  document.getElementById("ohmResult").textContent = "Result: " + result;
-}
 
         
     </script>
