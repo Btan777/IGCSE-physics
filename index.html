@@ -53,6 +53,10 @@
     <button class="nav-btn active" onclick="showSection('intro', this)">Introduction</button>
     <button class="nav-btn" onclick="showSection('atoms', this)">Atoms</button>
     <button class="nav-btn" onclick="showSection('static', this)">Static Electricity</button>
+    <button class="nav-btn" onclick="showSection('forces', this)">Forces</button>
+    <button class="nav-btn" onclick="showSection('lightning', this)">Lightning</button>
+    <button class="nav-btn" onclick="showSection('applications', this)">Applications</button>
+    <button class="nav-btn" onclick="showSection('ohm', this)">Ohm's Law</button>
     <button class="nav-btn" onclick="showSection('quiz', this)">Quiz</button>
   </div>
 
@@ -72,6 +76,34 @@
     <p><a href="https://phet.colorado.edu/en/simulation/legacy/balloons" target="_blank">🔗 Launch PhET: Balloons and Static Electricity</a></p>
   </div>
 
+  <div class="section" id="forces">
+    <h2>Forces Between Charges</h2>
+    <p>Explore how charges interact and how the electrostatic force changes with distance.</p>
+    <label for="distanceSlider">Distance between charges:</label>
+    <input type="range" min="1" max="100" value="50" id="distanceSlider" oninput="updateForceDisplay(this.value)">
+    <p id="distanceValue">Distance: 50 units</p>
+    <p id="forceValue">Force: ~ inversely proportional to distance²</p>
+  </div>
+
+  <div class="section" id="lightning">
+    <h2>Lightning</h2>
+    <p>Lightning occurs due to the discharge of static electricity between clouds and the ground.</p>
+  </div>
+
+  <div class="section" id="applications">
+    <h2>Applications</h2>
+    <p>Electrostatics is used in photocopiers, air purifiers, and spray painting.</p>
+  </div>
+
+  <div class="section" id="ohm">
+    <h2>Ohm's Law</h2>
+    <p>Ohm's Law relates voltage, current, and resistance using the formula <strong>V = IR</strong>.</p>
+    <label>Voltage (V): <input type="number" id="voltage" value="10"></label><br>
+    <label>Resistance (Ω): <input type="number" id="resistance" value="2"></label><br>
+    <button onclick="calculateCurrent()">Calculate Current</button>
+    <p id="currentResult">Current (I) = ? A</p>
+  </div>
+
   <div class="section" id="quiz">
     <h2>Quiz</h2>
     <p>Coming soon!</p>
@@ -83,6 +115,19 @@
       document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
       document.getElementById(sectionId).classList.add('active');
       if (btn) btn.classList.add('active');
+    }
+
+    function updateForceDisplay(value) {
+      document.getElementById('distanceValue').textContent = `Distance: ${value} units`;
+      const force = 10000 / (value * value);
+      document.getElementById('forceValue').textContent = `Estimated Electrostatic Force: ${force.toFixed(2)} N`;
+    }
+
+    function calculateCurrent() {
+      const V = parseFloat(document.getElementById('voltage').value);
+      const R = parseFloat(document.getElementById('resistance').value);
+      const I = V / R;
+      document.getElementById('currentResult').textContent = `Current (I) = ${I.toFixed(2)} A`;
     }
   </script>
 </body>
