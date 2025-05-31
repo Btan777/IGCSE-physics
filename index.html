@@ -1,112 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IGCSE G8 Physics - Interactive Electrostatics</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Include your existing styles here or link an external CSS */
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Electrostatics Interactive</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #f5f5dc;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    .nav-menu {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .nav-btn {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: 2px solid rgba(255,255,255,0.3);
+      padding: 12px 24px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    .nav-btn:hover, .nav-btn.active {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .section {
+      display: none;
+      padding: 20px;
+      background: white;
+      color: #333;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .section.active {
+      display: block;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>⚡ IGCSE G8 Physics ⚡</h1>
-            <p class="subtitle">Interactive Electrostatics Learning Experience</p>
-        </header>
+  <h1>⚡ Electrostatics Interactive ⚡</h1>
+  <div class="nav-menu">
+    <button class="nav-btn active" onclick="showSection('intro', this)">Introduction</button>
+    <button class="nav-btn" onclick="showSection('atoms', this)">Atoms</button>
+    <button class="nav-btn" onclick="showSection('static', this)">Static Electricity</button>
+    <button class="nav-btn" onclick="showSection('quiz', this)">Quiz</button>
+  </div>
 
-        <div class="navigation">
-            <button class="nav-btn active" onclick="showSection('intro')">Introduction</button>
-            <button class="nav-btn" onclick="showSection('atoms')">Atomic Structure</button>
-            <button class="nav-btn" onclick="showSection('static')">Static Electricity</button>
-            <button class="nav-btn" onclick="showSection('forces')">Forces & Charges</button>
-            <button class="nav-btn" onclick="showSection('lightning')">Lightning</button>
-            <button class="nav-btn" onclick="showSection('applications')">Applications</button>
-            <button class="nav-btn" onclick="showSection('quiz')">Quiz Time</button>
-            <button class="nav-btn" onclick="showSection('ohm')">Ohm's Law</button>
-        </div>
+  <div class="section active" id="intro">
+    <h2>Introduction</h2>
+    <p>Welcome to the interactive electrostatics webpage!</p>
+  </div>
 
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill" style="width: 14%"></div>
-        </div>
+  <div class="section" id="atoms">
+    <h2>Atoms</h2>
+    <p>Atoms are made of protons, neutrons, and electrons.</p>
+  </div>
 
-        <!-- Existing content unchanged -->
+  <div class="section" id="static">
+    <h2>Static Electricity</h2>
+    <p>Static electricity is caused by an imbalance of electric charges.</p>
+    <p><a href="https://phet.colorado.edu/en/simulation/legacy/balloons" target="_blank">🔗 Launch PhET: Balloons and Static Electricity</a></p>
+  </div>
 
-        <!-- Static Electricity Section -->
-        <div class="section" id="static">
-            <h2>⚡ Static Electricity</h2>
-            <!-- Existing content -->
+  <div class="section" id="quiz">
+    <h2>Quiz</h2>
+    <p>Coming soon!</p>
+  </div>
 
-            <div class="interactive-element">
-                <h4>🌐 Explore More</h4>
-                <p>Try the interactive PhET simulation to visualize how static charges behave!</p>
-                <a href="https://phet.colorado.edu/en/simulation/legacy/balloons" target="_blank" class="btn">Launch PhET Simulation</a>
-            </div>
-        </div>
-
-        <!-- Forces Section with dynamic interaction -->
-        <div class="section" id="forces">
-            <h2>🧲 Forces Between Charges</h2>
-            <!-- Existing charges demo -->
-
-            <div class="interactive-element">
-                <h4>🔁 Dynamic Charge Interaction</h4>
-                <label for="distanceSlider">Distance between charges:</label>
-                <input type="range" min="1" max="100" value="50" id="distanceSlider" oninput="updateForceDisplay(this.value)">
-                <p id="distanceValue">Distance: 50 units</p>
-                <p id="forceValue">Force: ~ inversely proportional to distance²</p>
-            </div>
-        </div>
-
-        <!-- Ohm's Law Section -->
-        <div class="section" id="ohm">
-            <h2>🔌 Ohm's Law</h2>
-            <div class="info-card">
-                <h3>Understanding Ohm's Law</h3>
-                <p>Ohm's Law relates voltage (V), current (I), and resistance (R):</p>
-                <h3 style="text-align: center; font-size: 1.5em;">V = I × R</h3>
-            </div>
-
-            <div class="interactive-element">
-                <h4>⚙️ Try it yourself!</h4>
-                <label>Voltage (V): <input type="number" id="voltage" value="10"></label><br>
-                <label>Resistance (Ω): <input type="number" id="resistance" value="2"></label><br>
-                <button class="btn" onclick="calculateCurrent()">Calculate Current</button>
-                <p id="currentResult">Current (I) = ? A</p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const sections = ['intro', 'atoms', 'static', 'forces', 'lightning', 'applications', 'quiz', 'ohm'];
-
-        function showSection(sectionName) {
-            document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(sectionName).classList.add('active');
-            event.target.classList.add('active');
-            updateProgress(sectionName);
-        }
-
-        function updateProgress(section) {
-            const index = sections.indexOf(section);
-            const progress = ((index + 1) / sections.length) * 100;
-            document.getElementById('progressFill').style.width = progress + '%';
-        }
-
-        function updateForceDisplay(value) {
-            document.getElementById('distanceValue').textContent = `Distance: ${value} units`;
-            const force = 10000 / (value * value);
-            document.getElementById('forceValue').textContent = `Estimated Electrostatic Force: ${force.toFixed(2)} N`;
-        }
-
-        function calculateCurrent() {
-            const V = parseFloat(document.getElementById('voltage').value);
-            const R = parseFloat(document.getElementById('resistance').value);
-            const I = V / R;
-            document.getElementById('currentResult').textContent = `Current (I) = ${I.toFixed(2)} A`;
-        }
-    </script>
+  <script>
+    function showSection(sectionId, btn) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+      if (btn) btn.classList.add('active');
+    }
+  </script>
 </body>
 </html>
